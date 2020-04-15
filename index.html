@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>hc_3.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="1-%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%81%AE%E4%BD%9C%E6%88%90">1. フォームの作成</h1>
+<h2 id="%E2%97%86-%E3%82%BF%E3%82%B0%E3%81%AE%E3%81%8A%E3%81%95%E3%82%89%E3%81%84">◆ タグのおさらい</h2>
+<p>これまでに、HTML フォームとパーツを構成するタグを学習しました。<br>
+復習も兼ねて、本章では各フォームを作成しましょう。</p>
+<br>
+<h3 id="%E2%97%8Finput-%E3%82%BF%E3%82%B0">●input タグ</h3>
+<p>フォームを構成するパーツを設定します。<br>
+基本的なコードは以下の様に記述し、閉じタグは不要です。</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"種類"</span> /&gt;</span>
+</div></code></pre>
+<p>パーツの種類は、type 属性で指定します。以下はその一例です。</p>
+<blockquote>
+<ul>
+<li>text ：テキストボックスを作成</li>
+<li>password：入力値を非常時にする</li>
+<li>date：日付の入力</li>
+<li>radio：ラジオボタン</li>
+<li>checkbox：チェックボックス</li>
+<li>file：ファイルのアップロード</li>
+</ul>
+</blockquote>
+<br>
+<h3 id="%E2%97%8Flabel-%E3%82%BF%E3%82%B0">●label タグ</h3>
+<p>フォームの各パーツに対してラベル(名前)を付けます。<br>
+ラベルは開始タグと終了タグの間に記述します。また、<br>
+パーツのタグを囲む記述方法と、for 属性を指定する記述方法があります。</p>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!--タグで囲む--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>ラベル<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"種類"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!--for属性で指定する--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"値"</span>&gt;</span>ラベル<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"種類"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"値"</span> /&gt;</span>
+</div></code></pre>
+<p><br><br><br></p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のパーツを表示させるコードを記述しましょう。(ラベルも付ける)<br>
+> <a href="https://codepen.io/" target="_blank">CodePen</a><br>
+1. パスワードの入力<br>
+2. 生年月日の選択<br>
+3. 男女のチェック
+</div>
+<br>
+<h3 id="%E2%97%8Ftextarea-%E3%82%BF%E3%82%B0">●textarea タグ</h3>
+<p>入力文字を指定できるテキストボックスを作成します。<br>
+cols 属性で列数、rows 属性で行数を指定できます。</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">"列数"</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">"行数"</span>&gt;</span>デフォルト文<span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
+</div></code></pre>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のパーツを表示させるコードを 記述しましょう。<br>
+入力文字数 200文字、デフォルト文「メッセージを入力して下さい」のテキストボックス<br>
+</div>
+<p><br><br></p>
+<h3 id="%E2%97%8Fselect-%E3%82%BF%E3%82%B0">●select タグ</h3>
+<p>select タグで option タグを囲い、option タグのコンテンツに<br>
+選択肢を記述する事で、プルダウンメニューを作成します。<br>
+属性は主に 3 種類あり、select タグの<mark>size 属性</mark>では<br>
+選択肢の表示行数を指定します。<br>
+select タグの<mark>name 属性</mark>と、option タグの <mark>value 属性</mark>は<br>
+同じ値を入れる必要があります。</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"値"</span> <span class="hljs-attr">size</span>=<span class="hljs-string">"表示桁数"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"値"</span>&gt;</span>リスト1<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"値"</span>&gt;</span>リスト2<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"値"</span>&gt;</span>リスト3<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+</div></code></pre>
+<p><br><br></p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 3</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のパーツを表示させるコードを記述しましょう。<br>
+・ 選択肢は グー、チョキ、パー<br>
+・ name属性と value属性は それぞれ rock_paper_scissors を指定<br>
+・ 表示桁数は 1
+</div>
+<p><br><br></p>
+<h3 id="%E2%97%8Fbutton-%E3%82%BF%E3%82%B0">●button タグ</h3>
+<p>ボタンは button タグを使います。以下 3 つの属性を指定できます。</p>
+<ul>
+<li>submit：フォーム等の情報を送信する</li>
+<li>reset：フォームの内容を削除する</li>
+<li>button：ボタンを作成する</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"ボタンの種類"</span>&gt;</span>ボタンのテキスト表示<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 4</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のパーツを表示させるコードを記述しましょう。(ラベルも付ける)<br>
+・種類は submit <br>
+・ボタンのテキストは 送信 <br>
+・class属性 button で フォントサイズ：20px、カラー：好きな色 を指定
+</div>
+<p><br><br><br><br></p>
+<p>[演習 回答例]</p>
+<br>
+<p>演習 1</p>
+<pre class="hljs"><code><div>1. <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>パスワード<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"password"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+
+2.
+<span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>生年月日<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"date"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+
+3.
+<span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>男<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"radio"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>女<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"radio"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+</div></code></pre>
+<br>
+<p>演習 2</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">"40"</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">"5"</span>&gt;</span>メッセージを入力して下さい<span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+</div></code></pre>
+<br>
+<p>演習 3</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"rock_paper_scissors"</span> <span class="hljs-attr">size</span>=<span class="hljs-string">"1"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"rock_paper_scissors"</span>&gt;</span>グー<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"rock_paper_scissors"</span>&gt;</span>チョキ<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"rock_paper_scissors"</span>&gt;</span>パー<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+</div></code></pre>
+<br>
+<p>演習 4</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>送信<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.button</span> {
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">20px</span>;
+  <span class="hljs-attribute">color</span>: tomato;
+}
+</div></code></pre>
+<br>
+<h1 id="2-%E7%96%91%E4%BC%BC%E8%A6%81%E7%B4%A0%E3%81%A8%E7%96%91%E4%BC%BC%E3%82%AF%E3%83%A9%E3%82%B9">2. 疑似要素と疑似クラス</h1>
+<h2 id="%E2%97%86-%E7%96%91%E4%BC%BC%E8%A6%81%E7%B4%A0%E3%81%A8%E3%81%AF">◆ 疑似要素とは</h2>
+<p>HTML の要素を、疑似的に CSS で設定する記述方法です。<br>
+セレクタにキーワードを追加し、要素の場所に紐付けて指定します。<br>
+各 疑似要素に対し、一部のプロパティが利用可能です。</p>
+<img src="pseudo.png">
+<br>
+<h3 id="%E2%97%8F-%E5%9F%BA%E6%9C%AC%E6%A7%8B%E9%80%A0">● 基本構造</h3>
+<p>疑似要素を反映させたいセレクタの後ろに、<br>
+:: (コロン 2 つ)を記述し、キーワードを続けます。</p>
+<pre class="hljs"><code><div>セレクタ::キーワード {
+  プロパティ: 値;
+}
+</div></code></pre>
+<p>ここからは、具体的な疑似要素を学習して行きましょう。</p>
+<p><br><br></p>
+<h3 id="%E2%97%8Fbefore-%E3%81%A8-after">●before と after</h3>
+<p>before は指定した要素の最初、after は指定した要素の最後に<br>
+要素を追加します。<mark>content</mark>プロパティを記述し、<br>
+フォントや背景に関する各プロパティを設定します。</p>
+<p>[html]</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"rank1"</span>&gt;</span>〇〇ランキング 第1位<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"rank2"</span>&gt;</span>〇〇ランキング 第2位<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"rank3"</span>&gt;</span>〇〇ランキング 第3位<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<br>
+<p>[CSS]</p>
+<pre class="hljs"><code><div><span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">::before</span> {
+  <span class="hljs-attribute">content</span>: <span class="hljs-string">"»"</span>;
+  <span class="hljs-attribute">color</span>: blue;
+}
+
+<span class="hljs-selector-class">.rank1</span><span class="hljs-selector-pseudo">::after</span> {
+  <span class="hljs-attribute">content</span>: <span class="hljs-string">" ← おススメ！"</span>;
+  <span class="hljs-attribute">color</span>: red;
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">13px</span>;
+  <span class="hljs-attribute">background-color</span>: lightgreen;
+}
+</div></code></pre>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+上記のコードを記述し、結果を確認しましょう。<br>
+また、ランキング 2位に対し、after疑似要素で任意のプロパティを追加しましょう。
+</div>
+<br>
+<p>疑似要素は CSS 上で編集が可能なため、注釈文や画像を試す時に用いると便利です。
+その他の例を確認していきましょう。</p>
+<br>
+<h3 id="%E2%97%8Ffirst-letter-%E3%81%A8-first-line">●first-letter と first-line</h3>
+<p>first-letter は要素の<mark>文頭</mark>に、first-line は要素の<mark>一行目</mark>にスタイルを適用させる疑似要素です。</p>
+<p>[html]</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sample1"</span>&gt;</span>本日のニュースです。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sample2"</span>&gt;</span>
+  東京事業所でプログラミング勉強会が開催されました。<span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+  今回のテーマは、疑似要素と疑似クラスです。
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<p>[CSS]</p>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.sample1</span><span class="hljs-selector-pseudo">::first-letter</span> {
+  <span class="hljs-attribute">color</span>: tomato;
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">150%</span>;
+}
+<span class="hljs-selector-class">.sample2</span><span class="hljs-selector-pseudo">::first-line</span> {
+  <span class="hljs-attribute">color</span>: green;
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">120%</span>;
+}
+</div></code></pre>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+上記のコードを記述し、結果を確認しましょう。<br>
+</div>
+<br>
+<h3 id="%E2%97%8Fselection">●selection</h3>
+<p>対象のコンテンツに対して、選択した際の変化を指定します。<br>
+以下を例とする、特定のプロパティのみ利用可能です。</p>
+<blockquote>
+<p>・color <br>
+・background-color <br>
+・text-shadow<br></p>
+</blockquote>
+<p>[html]</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sample1"</span>&gt;</span>選択すると文字色と背景が変化します<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sample2"</span>&gt;</span>選択すると影が追加されます。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<p>[CSS]</p>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.sample1</span><span class="hljs-selector-pseudo">::selection</span> {
+  <span class="hljs-attribute">color</span>: red;
+  <span class="hljs-attribute">background-color</span>: lightgreen;
+}
+
+<span class="hljs-selector-class">.sample2</span><span class="hljs-selector-pseudo">::selection</span> {
+  <span class="hljs-attribute">text-shadow</span>: <span class="hljs-number">2px</span> <span class="hljs-number">2px</span> <span class="hljs-number">3px</span> skyblue;
+}
+</div></code></pre>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 3</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+上記のコードを記述し、表示された文字列をカーソルで選択しましょう。<br>
+</div>
+<br>
+<h2 id="%E2%97%86-%E7%96%91%E4%BC%BC%E3%82%AF%E3%83%A9%E3%82%B9">◆ 疑似クラス</h2>
+<p>選択した要素に対し、<mark>状態</mark>に基づいてスタイル付けします。<br>
+要素の状態とは「マウスカーソルが接触した」「クリック時」等を指します。</p>
+<br>
+<h3 id="%E2%97%8F-%E5%9F%BA%E6%9C%AC%E6%A7%8B%E9%80%A0">● 基本構造</h3>
+<p>疑似クラスを指定したい要素のセレクタの後ろに、<br>
+: (コロン 1 つ)を記述し、キーワードを続けます。</p>
+<h3 id="%E2%97%8Fhover">●hover</h3>
+<p>マウスポインタが、要素の上を通過した際のスタイルを指定します。<br>
+※ hover は通過の意味</p>
+<p>[html]</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>Change blue<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<p>[CSS]</p>
+<pre class="hljs"><code><div><span class="hljs-selector-tag">button</span><span class="hljs-selector-pseudo">:hover</span> {
+  <span class="hljs-attribute">color</span>: blue;
+}
+</div></code></pre>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 4</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+上記のコードをHTMLとCSSに記述し、表示されたボタンにマウスを合わせましょう。
+</div>
+<br>
+<h3 id="%E2%97%8Factive">●active</h3>
+<p>リンク等をクリックした時のスタイルを指定します。</p>
+<p>[html]</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>このリンクをクリックしてください。<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</div></code></pre>
+<p>[CSS]</p>
+<pre class="hljs"><code><div><span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:active</span> {
+  <span class="hljs-attribute">color</span>: red;
+}
+</div></code></pre>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 5</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+上記のコードをHTMLとCSSに記述し、表示されたリンクをクリックしましょう。
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h1 id="3-flexbox1">3. flexbox(1)</h1>
+<h2 id="%E2%97%86flexbox-%E3%81%A8%E3%81%AF">◆flexbox とは</h2>
+<p>CSS3 から利用できる ボックスモデルのレイアウトです。<br>
+<mark>主軸</mark>と<mark>交差軸</mark>が設定され、その軸に対してコンテンツの位置関係を指定します。</p>
+<img src="flexbox.png">
+<h3 id="%E2%97%8F-%E5%9F%BA%E6%9C%AC%E6%A7%8B%E9%80%A0">● 基本構造</h3>
+<p>上記の図を参照し、学習して行きましょう。<br>
+まず<mark>flex-container</mark> ボックスがあり、<br>
+その中に<mark>flex-item</mark> ボックスが配置されます。</p>
+<p>この時、flex-container に対して軸が 2 本設定され、<br>
+flex-item の並べ方や位置を指定する事が出来ます。</p>
+<p><br><br></p>
+<h2 id="%E2%97%86flex-container-%E3%81%A8-flex-item">◆flex container と flex-item</h2>
+<p>さっそくですが、まずは次の演習に取り掛かりましょう。</p>
+<br>
+<br>
+<br>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+下記の HTMLと CSSをコピー&ペーストで貼り付け、表示結果を確認しましょう。<br>
+確認後、CSSエリアに .container { display: flex;} を追加で記述しましょう。<br>
+※ display: flex; の Emmetは dfです。
+</div>
+<p>[html]</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box box-1"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box box-2"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box box-3"</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box box-4"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box box-5"</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box box-1"</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box box-2"</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box box-3"</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box box-4"</span>&gt;</span>9<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box box-5"</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<p>[CSS]</p>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.container</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#fff</span>;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#eee</span>;
+}
+<span class="hljs-selector-class">.box</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">60px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">60px</span>;
+}
+<span class="hljs-selector-class">.box-1</span> {
+  <span class="hljs-attribute">background</span>: tomato;
+}
+<span class="hljs-selector-class">.box-2</span> {
+  <span class="hljs-attribute">background</span>: slategray;
+}
+<span class="hljs-selector-class">.box-3</span> {
+  <span class="hljs-attribute">background</span>: pink;
+}
+<span class="hljs-selector-class">.box-4</span> {
+  <span class="hljs-attribute">background</span>: skyblue;
+}
+<span class="hljs-selector-class">.box-5</span> {
+  <span class="hljs-attribute">background</span>: limegreen;
+}
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8Fflex-direction">●flex-direction</h3>
+<p>display:flex を追記すると、10 個のボックスが<br>
+並び替えられました。これは&lt;div class=&quot;container&quot;&gt;<br>
+配下の子要素が flex-item に指定されたためです。<br>
+(対象は直下の子要素だけ)</p>
+<p>ここからは、flex-item の並べ方を学習していきます。<br>
+<mark>flex-direction</mark>は、flex-item の並び方向を指定するプロパティで、<br>
+デフォルトは main axis の方向(今回は横並びの row)になっています。<br>
+この値を変更する事で、flex-item の並べ方を指定できます。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+下記のコードを参照し、2つの flex-direction それぞれの結果を表示させましょう。<br>
+※ flex-direction の Emmetは fxd, fxd:c, fxd:cr
+</div>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.container</span> {
+<span class="hljs-attribute">display</span>: flex;
+<span class="hljs-attribute">flex-direction</span>: column; <span class="hljs-comment">/* 縦並び */</span>
+<span class="hljs-attribute">flex-direction</span>: column-reverse; <span class="hljs-comment">/* 縦反転並び */</span>
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8Fflex-wrap">●flex-wrap</h3>
+<p>flex-wrap は、flex-item が flex-container 内に<br>
+収まらない時の並べ方を指定します。
+デフォルトは nowrap で折り返ししない<br>
+(詰め込んで並べる)で、値を wrap にすると<br>
+折り返し(幅に収まらない分が次に並ぶ)になります。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 3</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+下記のコードを参照し、2つの flex-wrap それぞれの結果を表示させましょう。<br>
+※ flex-direction の Emmetは fxw, fxw:w
+</div>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.container</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">flex-wrap</span>: wrap; <span class="hljs-comment">/* 折り返し */</span>
+  <span class="hljs-attribute">flex-wrap</span>: wrap-reverse; <span class="hljs-comment">/* 反転折り返し */</span>
+}
+</div></code></pre>
+<br>
+<p>また、<mark>flex-flow</mark>は、flex-firection と flex-wrap を<br>
+一括で指定するプロパティがあり、以下の記述が可能です。</p>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.container</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">flex-flow</span>: column wrap;
+  <span class="hljs-comment">/* flex-direction:column
+   flex-wrap:wrap        と同じ */</span>
+}
+</div></code></pre>
+<br>
+<h1 id="4-flexbox2">4. FlexBox(2)</h1>
+<h3 id="%E2%97%8Fjustify-content">●justify-content</h3>
+<p>main-axis 方向(図の赤矢印)の整列に用いるプロパティです。<br>
+flex-item の位置や余白の取り方を指定でき、<br>
+デフォルトは、flex-start の左揃いが設定されています。</p>
+<img src="justify-contents.png">
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+下記のコードを参照し、各 justify-contentの結果を確認しましょう。<br>
+※ justify-contentの Emmetは jcfe、jcc、jcsb、jcsa
+</div>
+<p>[CSS]</p>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.container</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">flex-flow</span>: wrap;
+
+  <span class="hljs-attribute">justify-content</span>: flex-end;
+  <span class="hljs-attribute">justify-content</span>: center;
+  <span class="hljs-attribute">justify-content</span>: space-between;
+  <span class="hljs-attribute">justify-content</span>: space-around;
+}
+</div></code></pre>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h3 id="%E2%97%8Falign-items">●align-items</h3>
+<p>cross axis 方向(図の青矢印)の整列に用いるプロパティです。<br>
+デフォルトでは、flex-start の上揃いが設定されています。</p>
+<img src="algin-items.png">
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+下記のコードを参照し、各 justify-contentの結果を確認しましょう。<br>
+※ align-itemsの Emmetは aife、aic、ais
+</div>
+<p>[CSS]</p>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.container</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">flex-flow</span>: wrap;
+
+  <span class="hljs-attribute">align-items</span>: flex-end;
+  <span class="hljs-attribute">align-items</span>: center;
+  <span class="hljs-attribute">align-items</span>: stretch;
+  <span class="hljs-comment">/* .boxの height 60pxをコメントアウトする*/</span>
+}
+</div></code></pre>
+<br>
+<p>今回は 解説したプロパティ以外にも、flex-item を対象にした記述方法があります。<br>
+他のプロパティの参照先として、以下のリンクを紹介します。</p>
+<blockquote>
+<p>◆flexbox の各パターンを表示<br> &gt; <a href="https://codepen.io/enxaneta/full/adLPwv/" target="_blank">Properties for the flex container</a></p>
+</blockquote>
+<p><br><br><br></p>
+<h2 id="%E2%97%86-%E7%B7%8F%E5%90%88%E6%BC%94%E7%BF%92">◆ 総合演習</h2>
+<p>ここまで「フォーム作成」「疑似要素と疑似クラス」「flex-box」を学習しました。<br>
+これらの理解を深めるため、以下の演習問題に回答しましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">総合演習 1</span>
+</div>
+<div style="border:4px solid pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+下図を参照に、以下の条件で HTML要素を記述し、メールフォームを作成しましょう。<br>
+フォームの CSSについては、下記のコードを利用して下さい。<br>
+(1) formタグを記述し、各パーツのタグを子要素にする<br>
+(2) 各パーツのタグは、それぞれ 個別の divタグで囲む<br>
+(3) label タグと各フォームタグについては、for属性と id属性の一致で連携させる。<br>
+※ ボタン要素の divタグには class属性で button を指定<br>
+</div>
+<br>
+<img src="form.png">
+<br>  
+<br>
+<p>ヒント 1</p>
+<blockquote>
+<p>・始めに form タグを記述、インデントを開けて各タグを記述する<br>
+・名前、アドレス、本文のテキストボックスと、送信ボタンの 計 4 つが必要となる HTML 要素<br>
+・input タグは、type 属性でフォームの種類を指定する。</p>
+</blockquote>
+<p>ヒント 2</p>
+<blockquote>
+<p>・名前と E-mail は input タグを使う。<br>
+・本文は textarea タグを使う<br>
+・送信ボタンは button タグを使う<br>
+・「名前」「E-mail」「本文」は label タグを使う<br>
+・label タグには for 属性、各タグには id 属性を記述する<br></p>
+</blockquote>
+<p>ヒント 3</p>
+<blockquote>
+<p>・label タグは、&lt;label for=&quot;〇〇&quot;&gt;ラベル名&lt;/label&gt;が基本構造<br>
+・input タグの属性は、テキスト：type=&quot;text&quot;、E-mail： type=&quot;text&quot; を指定する<br>
+・textarea タグの属性は、cols=&quot;列数&quot; rows=&quot;行数&quot; を指定する<br>
+・button タグの属性は、type=&quot;submit&quot; を指定する<br></p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-selector-tag">div</span> {
+  <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">15px</span>;
+  <span class="hljs-comment">/*input要素間のスペースを作成*/</span>
+}
+
+<span class="hljs-selector-tag">label</span> {
+  <span class="hljs-attribute">display</span>: inline-block;
+  <span class="hljs-comment">/*ラベルとテキストボックスの間を揃える*/</span>
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">70px</span>;
+  <span class="hljs-comment">/*ラベルの幅を揃える*/</span>
+}
+
+<span class="hljs-selector-tag">input</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;
+  <span class="hljs-attribute">font</span>: <span class="hljs-number">12px</span> sans-serif;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#999</span>;
+}
+
+<span class="hljs-selector-tag">textarea</span> {
+  <span class="hljs-attribute">vertical-align</span>: top;
+  <span class="hljs-comment">/* ラベルを上に揃える */</span>
+  <span class="hljs-attribute">font</span>: <span class="hljs-number">12px</span> sans-serif;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#999</span>;
+}
+
+<span class="hljs-selector-class">.button</span> {
+  <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">75px</span>;
+  <span class="hljs-comment">/* ボタンの左端をテキストボックスに揃える */</span>
+}
+</div></code></pre>
+<p><br><br><br></p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">総合演習 2</span>
+</div>
+<div style="border:4px solid pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下の条件を満たすHTMLを記述し、疑似要素または疑似クラスで装飾しましょう。<br>
+(1) pタグを使って「日替わり弁当」「鮭弁当」「唐揚げ弁当」を記述し、それぞれ class属性を指定する<br>
+(2) aタグを使って「お店のリンク」のリンクを作成する<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- URLは https://www.hokkahokka-tei.jp/  を指定する<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- リンクは別タブで開くようにする。<br>
+(3) 次の内容を疑似要素で追加する。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-「日替わり弁当」の左端に ★★★、右端に ← 本日のおススメ！を追記 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;-「鮭弁当」の左端に ★★、「唐揚げ弁当」の左端に ★を追加 <br>
+(4) 次の内容を疑似要素のプロパティで指定する。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- ★ と ←本日のおススメ！ を任意の色に指定<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- マウスカーソルが お店のリンク を通過する際に文字と背景を任意の色に変化させる。<br>
+<p>※ 疑似要素の CSS プロパティに white-space: pre; を追加する。(スペースが反映される)<br>
+※ リンクが別タブで開く設定は、Emmet a[target=_blank] で記述可能。<br></p>
+</div>
+<br>
+<p>ヒント 1</p>
+<blockquote>
+<p>・class 属性は 各 p 要素毎に個別の値を指定する。(例)日替わり弁当 →daily など<br>
+・a タグは href 属性に URL を指定する<br>
+・疑似要素は、セレクタの後ろに ::キーワード で指定する<br>
+・疑似クラスは、セレクタの後ろに :キーワード で指定する<br></p>
+</blockquote>
+<p>ヒント 2</p>
+<blockquote>
+<p>・★ と おススメ！ の追記には、疑似要素 before と after を使う<br>
+・マウスカーソル通過時の挙動は、疑似クラス hover を使う<br>
+・色の指定は color プロパティ、背景色は background-color を使う。(Emmet は c と bgc)<br></p>
+</blockquote>
+<p>ヒント 3</p>
+<blockquote>
+<p>・&lt;p class=&quot;daily&quot;&gt; 日替わり弁当&lt;/p&gt; で記述<br>
+・.daily::before {content:&quot;★★★&quot;} 波括弧内に別のプロパティを記述する<br>
+・a タグは &lt;a href=&quot;https://www.hokkahokka-tei.jp/&quot; target=&quot;_blank&quot;&gt;お店のリンク&lt;/a&gt; で記述</p>
+</blockquote>
+<p><br><br></p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">総合演習 3</span>
+</div>
+<div style="border:4px solid pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+次の Webサイトにアクセスし、flex-boxの問題 Lv.1～Lv.6を解きましょう。<br>
+<a href="http://flexboxfroggy.com/#ja" target="_blank">FLEXBOX FROGGY</a><br>
+</div>
+<p><br><br><br></p>
+<p>総合演習 1 回答例</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"name"</span>&gt;</span>名前<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"name"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"mail"</span>&gt;</span>E-mail<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"mail"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"msg"</span>&gt;</span>本⽂<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">"40"</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">"10"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"msg"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"button"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>送信<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+</div></code></pre>
+<p><br><br><br></p>
+<p>総合演習 2 回答例</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"daily"</span>&gt;</span>日替わり弁当<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fish"</span>&gt;</span>鮭弁当<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"meat"</span>&gt;</span>唐揚げ弁当<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://www.hokkahokka-tei.jp/"</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"_blank"</span>&gt;</span>お店のリンク<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.daily</span><span class="hljs-selector-pseudo">::before</span> {
+  <span class="hljs-attribute">content</span>: <span class="hljs-string">"★★★"</span>;
+  <span class="hljs-attribute">color</span>: orange;
+}
+<span class="hljs-selector-class">.daily</span><span class="hljs-selector-pseudo">::after</span> {
+  <span class="hljs-attribute">content</span>: <span class="hljs-string">"←本日のおススメ！"</span>;
+  <span class="hljs-attribute">color</span>: red;
+}
+<span class="hljs-selector-class">.fish</span><span class="hljs-selector-pseudo">::before</span> {
+  <span class="hljs-attribute">white-space</span>: pre;
+  <span class="hljs-attribute">content</span>: <span class="hljs-string">"   ★★"</span>;
+  <span class="hljs-attribute">color</span>: orange;
+}
+<span class="hljs-selector-class">.meat</span><span class="hljs-selector-pseudo">::before</span> {
+  <span class="hljs-attribute">white-space</span>: pre;
+  <span class="hljs-attribute">content</span>: <span class="hljs-string">"      ★"</span>;
+  <span class="hljs-attribute">color</span>: orange;
+}
+<span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:hover</span> {
+  <span class="hljs-attribute">color</span>: orange;
+  <span class="hljs-attribute">background-color</span>: blue;
+}
+</div></code></pre>
+<p><br><br></p>
+<p>総合演習 3 回答例</p>
+<blockquote>
+<p>Lv.1 justify-content: flex-end;<br>
+Lv.2 justify-content:center<br>
+Lv.3 justify-content:space-around;<br>
+Lv.4 justify-content:space-between;<br>
+Lv.5 align-items:flex-end<br>
+Lv.6 justify-content:center; と align-items:center;<br></p>
+</blockquote>
+<p>本章はここまでです。お疲れ様でした！</p>
+<p><a href="https://masashi-m.github.io/text_htmlcss_04/.">HTML/CSS 学習テキスト(4)へ</a></p>
+
+</body>
+</html>
